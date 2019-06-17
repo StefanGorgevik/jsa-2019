@@ -18,28 +18,28 @@
 // };
 // everyThird();
 
-// function everyThird(c) {
-//     var i = 0;
-//     var j = 0;
-//     while(i < 100) {
-//         i++;
-//         if(i % 2 === 0){
-//             j++;                 
-//         }
-//         if(i % 2 === 0 && j === c) {
-//             console.log(i);  
-//             j = 0;
-//         }
-//     }
-// };
-// everyThird(4);
+function everyThird(c) {
+    var i = 0;
+    var j = 0;
+    while(i < 100) {
+        i++;
+        if(i % 2 === 0){
+            j++;                 
+        }
+        if(i % 2 === 0 && j === c) {
+            console.log("1" + i);  
+            j = 0;
+        }
+    }
+};
+//everyThird(4);
 
 
 
 
 // //exercise 2   
-var arr = [];
-var array = [248,21,68,239,46];
+// var arr = [];
+// var array = [248,21,68,239,46];
 function arraySum(niza) {
     var zbir = 0;
     var num;
@@ -55,8 +55,8 @@ function arraySum(niza) {
     }
     return arr;
 }
-arraySum(array);
-console.log(arr);
+// arraySum(array);
+// console.log(arr);
 //arraySum(arr);
 
 
@@ -70,7 +70,7 @@ console.log(arr);
 // function arrSum(niza) {
 //     var c = 0;
 //     for(var i = 0; i < niza.length;i++) {
-//         if(niza[i].toString().length > 1]) {
+//         if(niza[i].toString().length > 1) {
 //             c++;
 //             niza[i] = niza[i].toString().split("").reduce((a,b) => parseInt(a) + parseInt(b));
 //         }
@@ -86,3 +86,7 @@ console.log(arr);
 
 //homework
 
+module.exports = {
+    arraySum,
+    everyThird
+};
