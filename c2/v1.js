@@ -38,31 +38,37 @@
 
 
 // //exercise 2   
-var arr = [];
-var array = [248,21,68,239,46]; //14,3,14,14,10; 5,3,5,5,1, --19
-function arraySum(niza) {
+
+var niza = [248,239,220]; //14,3,14,14,10; 5,3,5,5,1, --19
+// function arraySum(niza) {
+    var arr = [];
     var zbir = 0;
     var num;
+    var i = 0;
     for(var j = 0; j < niza.length; j++){
         num = 0;
+        console.log(zbir);
+        console.log(num);
         num = niza[j];
+        console.log(num);
+        console.log("this is array : " + niza);
         var digits = (""+num).split("").map(Number);
         console.log("This is digit: " + digits);
-    for(var i = 0; i < digits.length; i++) {
-        if(digits.length >= 1) {
-            zbir += digits[i];  
-            arr.push(zbir);
-            console.log("arr after push: " + arr);
-            array.shift();
-            console.log("this is array after shift: " + array);
-        }
-    }  }
-    // zbir = 0;
-    console.log(arr);
-    return arr;  
-}
-arraySum(array);
-console.log(arr);
+        niza.shift();
+        console.log("this is array after shift: " + niza);
+   while(i < digits.length) {           
+        zbir += digits[i];   
+        console.log(zbir);
+        i++; 
+    }
+    arr.push(zbir); 
+    zbir = 0;
+    console.log("arr after push: " + arr);
+ }  
+    //console.log(arr);  
+//}
+// arraySum(array);
+//console.log(arr);
 //arraySum(arr);
 
 
