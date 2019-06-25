@@ -19,10 +19,9 @@ var server = http.createServer(function (req, res) {
                     output += parseInt(URL[i]);
                 }
            }
-            
             break;
    } 
-    res.write(output + "");
+    res.write(URL[1] + " " + output + "");
     res.end(); //end the response
 });
 
