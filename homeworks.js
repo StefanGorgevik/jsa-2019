@@ -139,53 +139,126 @@
 
 //HOMEWORK 3
 
+// var http = require('http');
+
+// var server = http.createServer(function (req, res) {
+//    var URL = req.url.split("/");
+//    var output;
+//    switch(URL[1]) {
+//        case "add":
+//         output = 0;
+//            if(URL.length > 2) {
+//                 for(let i = 2; i < URL.length;i++) {
+//                     output += Number(URL[i]);
+//                 }
+//             }
+//             break;
+//         case "sub":
+//             output = Number(URL[2]);
+//             if(URL.length >= 2) {     
+//                 for(let i = 3; i < URL.length;i++) {
+//                     output -= Number(URL[i]);  
+//                 }
+//             }
+//             break;
+//         case "mul":
+//             output = 1;
+//             if(URL.length >= 2) {
+//                 for(let i = 2; i < URL.length;i++) {
+//                     output *= Number(URL[i]);
+//             }
+//         }
+//             break;
+//         case "div":
+//             output = Number(URL[2]);
+//             if(URL.length >= 2) {
+//                 for(let i = 3; i < URL.length; i++) {
+//                     output /= Number(URL[i]);   
+//                 }
+//             }
+//             break;
+//    };
+//             res.write("Result for operation " + URL[1] + " is " + output);
+//             res.end(); 
+// });
+
+// server.listen(8080, (err) => {
+//     if(err) {
+//         console.log(err);
+//         return;
+//     }
+//     console.log("Server started successfully!");
+// });
+
+//HOMEWORK 4
+
 var http = require('http');
 
+    var getAllStudents = () => { console.log("All students!"); };
+    var getStudent = () => {console.log("Here is a student with id!")};
+    var getStudentByName = () => {console.log("Here is a student with name!")};
+    var storeStudent = () => {console.log("You have stored a student!" )};
+    var deleteStudent = () => {console.log("Student deleted!" )};
+    var updateStudent = () => {console.log("Student updated!")};
+    var patchStudent = () => {console.log("Student patched!" )};
+var routes = {
+    get: [
+        { route: "/students", func: getAllStudents },
+        { route: "/students/:id", func: getStudent },
+        { route: "/students/:name", func: getStudentByName }
+    ],
+    post: [
+        { route: "/students", func: storeStudent }
+    ],
+    put: [
+        { route: "/students/:id", func: updateStudent }
+    ],
+    patch: [
+        { route: "/students/:id", func: patchStudent }
+    ],
+    delete: [
+        { route: "/students/:id", func: deleteStudent }
+    ]
+}
+
 var server = http.createServer(function (req, res) {
-   var URL = req.url.split("/");
-   var output;
-   switch(URL[1]) {
-       case "add":
-        output = 0;
-           if(URL.length > 2) {
-                for(let i = 2; i < URL.length;i++) {
-                    output += Number(URL[i]);
-                }
-            }
+    
+    var regmatch = true;
+    var index = undefined;
+    
+    for(let i = 0; i < routes[req.method.toLowerCase()].length; i++) {
+        var route = routes[req.method.toLowerCase()][i].route;
+        if(route === req.url) {
+            index = i;
+            regmatch = false;
             break;
-        case "sub":
-            output = Number(URL[2]);
-            if(URL.length >= 2) {     
-                for(let i = 3; i < URL.length;i++) {
-                    output -= Number(URL[i]);  
-                }
-            }
-            break;
-        case "mul":
-            output = 1;
-            if(URL.length >= 2) {
-                for(let i = 2; i < URL.length;i++) {
-                    output *= Number(URL[i]);
-            }
         }
-            break;
-        case "div":
-            output = Number(URL[2]);
-            if(URL.length >= 2) {
-                for(let i = 3; i < URL.length; i++) {
-                    output /= Number(URL[i]);   
-                }
-            }
-            break;
-   };
-            res.write("Result for operation " + URL[1] + " is " + output);
-            res.end(); 
+    }
+
+    if(regmatch) {
+        for(let i = 0; i < routes[req.method.toLowerCase()].length; i++) {
+            var route = routes[req.method.toLowerCase()][i].route;  //students/:id
+            route = route.split("/").join("\\/");
+            var regroute = route.replace(/(\/:[a-zA-Z_]*)/, "([a-zA-Z0-0\-_]+)"); // /students/([a-zA-Z0-0\-_]*)
+            var re = new RegExp("^" + regroute + "$");
+            if(re.test(req.url)) { //req.url == /students/([a-zA-Z0-0\-_]*)
+                index = i;
+                break;
+            };
+        }
+    }
+
+    if(index !== undefined) {
+        routes[req.method.toLowerCase()][index].func();
+    }
+
+    res.write(req.url + " " + req.method);
+    res.end();
 });
 
 server.listen(8080, (err) => {
     if(err) {
         console.log(err);
-        return;
     }
-    console.log("Server started successfully!");
+    console.log("Server started successfully!")
 });
