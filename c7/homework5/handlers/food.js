@@ -6,7 +6,9 @@ var GetAllFood = (req, res) => {
             res.send('Could not read file');
             return;
         }
+       // data = data.sort((a,b) => {return a.id - b.id});
         jData = JSON.parse(data);
+        jData = jData.sort((a,b) => {return a.id - b.id});
         res.send(jData);
     });
 };
