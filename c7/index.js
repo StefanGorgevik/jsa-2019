@@ -1,9 +1,9 @@
-//npm init
-//start: "node index.js"
+//npm init to create package.json
+// add a script "start": "node index.js"
 // npm start
 
 //install express: npm install express --save
- //                                      save the folder node_modules in package.json
+ //                                      save the package name and version in package.json(only for the project)
 
 
 var express = require("express");
