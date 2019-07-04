@@ -86,7 +86,23 @@ var UpdateFood = (req, res) => {
 };
 
 var PartialUpdateFood = (req, res) => {
-    res.send('test');
+    fs.readFile('./food_list.json', 'utf8', (err, data) => {
+    var jData = JSON.parse(data);
+    if(jData[req.params.id] != undefined){
+        if(req.body.name != undefined && req.body.name != "" && req.body.name.length > 0){
+            jData[req.params.id].name = req.body.name;
+        }
+        if(req.body.price != undefined){
+            jData[req.params.id].price = req.body.price;
+        }
+        if(req.body.calories != undefined){
+            jData[req.params.id].calories = req.body.calories;
+        }
+        return res.status(200).send("OK");
+    } else {
+        return res.status(404).send("Not Found");
+    }
+});
 };
 
 var DeleteFood = (req, res) => {
