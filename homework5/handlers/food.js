@@ -82,7 +82,7 @@ var updateFood = (req, res) => {
             if(err){
                 return res.status(500).send('Could not save file');
             }
-            return res.status(200).send('OK');
+            return res.status(200).send('Item updated!');
         });
     });
 };
@@ -103,7 +103,7 @@ var deleteFood = (req, res) => {
             if(err){
                 return res.status(500).send('Could not save file');
             }
-            return res.status(200).send('OK');
+            return res.status(200).send('Item deleted!');
         });
     });
 };
@@ -141,11 +141,10 @@ var partialUpdateFood = (req, res) => {
             if (err) {
                 return res.status(500).send('Could not save file');
             }
-            return res.status(200).send('Success!');
+            return res.status(200).send('Item updated!');
         });
     });
 }
-
 
 
 module.exports = {
