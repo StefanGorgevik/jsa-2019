@@ -1,0 +1,99 @@
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url(https://previews.123rf.com/images/romastudio/romastudio1603/romastudio160300203/54088672-healthy-food-background-studio-photo-of-different-fruits-and-vegetables-on-white-wooden-table-high-r.jpg); 
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        button {
+            margin-left: 50px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 50%;
+            margin-left: 50px;
+        }
+        table, th{
+            border: 2px solid black;
+        }
+        tr {
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Food list</h1>
+    <button id="get-food-btn">Get Food</button>
+    <button id="refreshBtn">Refresh</button>
+
+    <table id="table" border="1" >
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Calories</th>
+			
+		</tr>
+    </table>
+    
+    <div><form action="/food/:id" method="POST"></script>
+        <select name="Select" id="selectOption">
+            <option value="Name">Name</option>
+            <option value="Price">Price</option>
+            <option value="Calories">Calories</option>
+        </select>
+    <input type="text" name="post">
+    <button id="enterButton">Enter</button>
+    </form>
+</div>
+    
+    <script>
+
+    var getFoodBtn = document.querySelector('#get-food-btn');
+    var refreshBtn = document.querySelector('#refreshBtn');
+    // var enterButton = document.querySelector("#enterButton");
+    // var inputFood = document.querySelector("#post");
+    
+        
+	  function refresh() {
+                   window.location.reload();
+                   
+           }
+
+           var getPosts = () => {fetch("http://127.0.0.1:8080/food")
+                .then(function(response) {
+                    return response.json()
+                }).then(data=>{
+                    var table = document.getElementById("table");
+                        for(var i = 0;i < data.length; i++) {
+                            var tr = document.createElement("tr");
+                            for(var j in data[i]) {
+                                var td = document.createElement("td");
+                                td.innerText = data[i][j];
+                                tr.append(td);
+                            }
+                            table.append(tr);
+                        }
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });}
+
+       
+        getFoodBtn.addEventListener('click', getPosts);
+        refreshBtn.addEventListener('click', refresh);
+        
+           
+
+            
+    </script>
+</body>
+</html>
