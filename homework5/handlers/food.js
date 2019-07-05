@@ -63,7 +63,7 @@ var updateFood = (req, res) => {
             return res.send("Could not read file!");
         };
         var jData = JSON.parse(data);
-        const food = jData.find(c => c.id === Number(req.params.id));
+        var food = jData.find(c => c.id === Number(req.params.id));
         if(!food) {
             return res.status(404).send("The course with the given ID was not found!");
         }
@@ -76,13 +76,11 @@ var updateFood = (req, res) => {
         food.name = req.body.name;
         food.price = req.body.price;
         food.calories = req.body.calories;
-
-
         fs.writeFile('./food_list.json', JSON.stringify(jData), (err) => {
             if(err){
                 return res.status(500).send('Could not save file');
             }
-            return res.status(200).send('Item updated!');
+            return res.status(200).send('OK');
         });
     });
 };
@@ -103,7 +101,7 @@ var deleteFood = (req, res) => {
             if(err){
                 return res.status(500).send('Could not save file');
             }
-            return res.status(200).send('Item deleted!');
+            return res.status(200).send('OK');
         });
     });
 };
@@ -125,13 +123,9 @@ var partialUpdateFood = (req, res) => {
         var jData = JSON.parse(data);
         var body = req.body;
         var foodKeys = Object.keys(body);
-        console.log(foodKeys);
         for (let i = 0; i < jData.length; i++) {
             if (jData[i].id == req.params.id) {
                 for (let j = 0; j < foodKeys.length; j++) {
-                    console.log(foodKeys[j]);
-                    console.log(jData[i][foodKeys[j]]);
-                    console.log(body[foodKeys[j]]);
                     jData[i][foodKeys[j]] = body[foodKeys[j]];
                 }
                 break;              
@@ -141,10 +135,11 @@ var partialUpdateFood = (req, res) => {
             if (err) {
                 return res.status(500).send('Could not save file');
             }
-            return res.status(200).send('Item updated!');
+            return res.status(200).send('Success!');
         });
     });
 }
+
 
 
 module.exports = {
