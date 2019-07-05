@@ -1,23 +1,29 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var food = require('./handlers/food');
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const Joi = require("joi");
+var food = require("./handlers/food");
 
-var api = express();
-api.use(bodyParser.json());
-api.use(express.static("public"));
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
 
-api.get('/food', food.GetAllFood);
-api.get('/food/:id', food.GetSingleFood);
-api.post('/food', food.CreateNewFood);
-api.put('/food/:id', food.UpdateFood);
-api.patch('/food/:id', food.PartialUpdateFood);
-api.delete('/food/:id', food.DeleteFood);
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.use(bodyParser.json());
 
+app.get('/food', food.getAllFood);
+app.get('/food/:id', food.getSingleFood);
+app.post('/food', food.createNewFood);
+app.put('/food/:id', food.updateFood);
+app.delete('/food/:id', food.deleteFood);
+app.patch('/food/:id', food.partialUpdateFood);
 
-api.listen(8080, (err) => {
-    if(err){
-        console.error(err);
-        return;
+const port = process.env.PORT || 8080;
+app.listen(port, (err) => {
+    if(err) {
+        console.log(err);
     }
-    console.log('Server started successfully');
+    console.log(`The server is started and listening on ${port}`)
 });

@@ -1,15 +1,19 @@
 {
-  "name": "c7",
+  "name": "homework5",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
-  }
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "joi": "^14.3.1"
+  },
+  "javascript.showUnused": false,
+  "typescript.showUnused": false
 }
