@@ -32,6 +32,14 @@ var getSingleFood = (req,res) => {
 };
 
 var createNewFood = (req, res) => {
+    var check = req.body.id != undefined
+    && req.body.name != undefined && req.body.name != "" && req.body.name.length > 0
+    && req.body.price != undefined
+    && req.body.calories != undefined;
+
+    if (!check) {
+        return res.status(400).send('Bad request');
+    }
     fs.readFile("./food_list.json", "utf8", (err,data) => {
         if(err) {
             return res.send("Could not read file!");
