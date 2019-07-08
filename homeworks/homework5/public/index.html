@@ -183,13 +183,13 @@
 //brise selektrirana hrana, ne e zavrsena da brise od server!
         dltButton.addEventListener("click", function(e){
             var chk = document.getElementsByClassName("class1");  
-            var trr = document.getElementsByTagName("tr");
-            var arr = [];
-            for(let p = 0; p < trr.length; p++){
-                arr.push((trr[p].childNodes[0].textContent));
-            }
-            arr.shift();
-            console.log(arr);
+            // var trr = document.getElementsByTagName("tr");
+            // var arr = [];
+            // for(let p = 0; p < trr.length; p++){
+            //     arr.push((trr[p].childNodes[0].textContent));
+            // }
+            // arr.shift();
+            // console.log(arr);
             
             for(let j = 0; j < chk.length; j++) {
                 if(chk[j].checked) {
