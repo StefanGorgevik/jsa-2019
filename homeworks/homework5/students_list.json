@@ -33,5 +33,12 @@
     "lastname": "Todorovski",
     "age": 21,
     "city": "Prilep"
+    },
+    {
+    "id": 6,
+    "name": "Velko",
+    "lastname": "Velkovski",
+    "age": 51,
+    "city": "Strumica"
     }
 ]

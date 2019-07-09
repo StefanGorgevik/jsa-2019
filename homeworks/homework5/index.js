@@ -18,7 +18,6 @@ app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
 app.use(express.static("public"));
-//app.set("view engine", "ejs");
 app.use(bodyParser.json());
 
 app.get('/food', food.getAllFood);
