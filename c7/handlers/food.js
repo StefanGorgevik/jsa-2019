@@ -110,6 +110,7 @@ var PartialUpdateFood = (req, res) => {
         // if(req.body.price != undefined && req.body.price != ""){
         //     jData[index].price = req.body.price;
         // }
+
         // if(req.body.calories != undefined && req.body.calories != ""){
         //     jData[index].calories = req.body.calories;
         // }

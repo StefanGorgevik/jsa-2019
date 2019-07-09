@@ -7,8 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello from {{ime}} {{prezime}}!</h1>
-
-
+    <h1>Hello {{ime}} {{prezime}}!</h1>
+    <ul>
+        {{#each studenti}}
+        <li>{{ime}} {{prezime}}</li>
+        {{/each}}
+    </ul>
 </body>
 </html>

@@ -173,10 +173,29 @@
                     'Content-Type': 'application/json'
                 }, 
                 body: JSON.stringify(newElement)
-            });
-            alert("New food item added");
-            refresh();
-            getFood();
+            }
+            )
+            .then(res => res.json())
+            .then(output => {
+                for(var i = 0;i < output.length; i++) {
+                            var tr = document.createElement("tr");
+                            for(var j in output[i]) {
+                                var td = document.createElement("td");
+                                td.innerText = output[i][j];
+                                var check = document.createElement("input");
+                                check.setAttribute("type", "checkbox");
+                                check.classList.add("class1")
+                                tr.append(td);
+                            }
+                            table.append(tr);
+                            for(let i = 0; i < table.rows.length; i ++) {
+                               table.rows[i].cells[0].append(check);
+                            }
+                        }
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });
         });
 
 
@@ -190,12 +209,10 @@
             // }
             // arr.shift();
             // console.log(arr);
-            
+            //console.log(chk);
             for(let j = 0; j < chk.length; j++) {
                 if(chk[j].checked) {
-                    console.log(chk[j]);
                     chk[j].parentNode.parentNode.remove();
-                    console.log("Item removed!");    
                 }
             }   
 });

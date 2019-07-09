@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var hbs = require('express-hbs');
+
 var students = require('./handlers/students');
 var calculator = require('./handlers/calculator');
 var food = require('./handlers/food');
@@ -9,18 +10,12 @@ var templates = require('./handlers/templates');
 var api = express();
 api.use(bodyParser.json());
 api.use(express.static('www'));
-api.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    next();
-});
-
-//npm install express-hbs --save install
 
 api.engine('hbs', hbs.express4({
-    partialsDir: __dirname + '/views/partials'
-  }));
-  api.set('view engine', 'hbs');
-  api.set('views', __dirname + '/views');
+    partialsDir: __dirname + "/views/partials"
+}));
+api.set('view engine', 'hbs');
+api.set('views', __dirname + '/views');
 
 api.get('/students', students.GetAllStudents);
 api.get('/students/:id', students.GetStudentByID);
@@ -35,7 +30,7 @@ api.put('/food/:id', food.UpdateFood);
 api.patch('/food/:id', food.PartialUpdateFood);
 api.delete('/food/:id', food.DeleteFood);
 
-api.get("/first", templates.First);
+api.get('/first', templates.First);
 
 api.listen(8080, (err) => {
     if(err){
