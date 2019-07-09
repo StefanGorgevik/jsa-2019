@@ -10,9 +10,8 @@ var templates = require('./handlers/templates');
 var api = express();
 api.use(bodyParser.json());
 api.use(express.static('www'));
-
 api.engine('hbs', hbs.express4({
-    partialsDir: __dirname + "/views/partials"
+    partialsDir: __dirname + '/views/partials'
 }));
 api.set('view engine', 'hbs');
 api.set('views', __dirname + '/views');
@@ -31,6 +30,7 @@ api.patch('/food/:id', food.PartialUpdateFood);
 api.delete('/food/:id', food.DeleteFood);
 
 api.get('/first', templates.First);
+
 
 api.listen(8080, (err) => {
     if(err){
