@@ -9,9 +9,9 @@ var GetStudents = (req, res) => {
             var jData = JSON.parse(data);
             var newData = {};
             newData.studenti = jData;
-            console.log(newData.studenti);
+            
             res.render("students", newData);
-        }
+        };
     });
 }
     module.exports = {
