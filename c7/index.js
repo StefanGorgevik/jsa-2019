@@ -10,6 +10,7 @@ var templates = require('./handlers/templates');
 var api = express();
 api.use(bodyParser.json());
 api.use(express.static('www'));
+
 api.engine('hbs', hbs.express4({
     partialsDir: __dirname + '/views/partials'
 }));

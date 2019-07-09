@@ -1,0 +1,37 @@
+[
+    {
+    "id": 1,
+    "name": "Stefan",
+    "lastname": "Gorgevik",
+    "age": 25,
+    "city": "Veles"
+    },
+    {
+    "id": 2,
+    "name": "Marjan",
+    "lastname": "Petrovski",
+    "age": 20,
+    "city": "Gevgelija"
+    },
+    {
+    "id": 3,
+    "name": "Darko",
+    "lastname": "Darkovski",
+    "age": 18,
+    "city": "Skopje"
+    },
+    {
+    "id": 4,
+    "name": "Milan",
+    "lastname": "Milankovski",
+    "age": 32,
+    "city": "Strumica"
+    },
+    {
+    "id": 5,
+    "name": "Todor",
+    "lastname": "Todorovski",
+    "age": 21,
+    "city": "Prilep"
+    }
+]

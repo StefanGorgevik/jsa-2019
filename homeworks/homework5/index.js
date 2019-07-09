@@ -3,11 +3,19 @@ const app = express();
 const bodyParser = require("body-parser");
 const Joi = require("joi");
 var food = require("./handlers/food");
+var hbs = require("express-hbs");
+var templates = require('./handlers/templates');
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     next();
 });
+
+app.engine('hbs', hbs.express4({
+    partialsDir: __dirname + '/views/partials'
+}));
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -19,6 +27,8 @@ app.post('/food', food.createNewFood);
 app.put('/food/:id', food.updateFood);
 app.delete('/food/:id', food.deleteFood);
 app.patch('/food/:id', food.partialUpdateFood);
+
+app.get("/students", templates.GetStudents);
 
 const port = process.env.PORT || 8080;
 app.listen(port, (err) => {
