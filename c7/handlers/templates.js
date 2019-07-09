@@ -9,7 +9,7 @@ var First = (req, res) => {
         ]
     };
     res.render('first', data);
-}
+};
 
 module.exports = {
     First
