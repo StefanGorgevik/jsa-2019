@@ -5,13 +5,13 @@ var GetStudents = (req, res) => {
         if(err){
             throw err;
         }
-        else {
+        // else {
             var jData = JSON.parse(data);
             var newData = {};
             newData.studenti = jData;
             
             res.render("students", newData);
-        };
+        //};
     });
 }
     module.exports = {

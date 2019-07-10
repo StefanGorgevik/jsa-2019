@@ -108,13 +108,15 @@
             var chk = document.getElementsByClassName("class1"); 
             for(let j = 0; j < chk.length; j++) {
             if(chk[j].checked) {
+                var item = chk[j].parentNode.parentNode;
                     fetch(
                             `http://127.0.0.1:8080/food/${Number(chk[j].parentNode.innerText)}`,
                             {method: 'delete'}
                         )
                         .then(res => res.text())
                         .then(data => {
-                        chk[j].parentNode.parentNode.remove();
+                        item.remove();
+                        console.log("Item deleted!")
                      });
                 }
             }
