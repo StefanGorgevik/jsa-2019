@@ -10,7 +10,6 @@ app.set('views', __dirname + '/views');
 
 app.get("/", students.GetStudents);
 
-
 var PORT = process.env.PORT || 8080;
 app.listen(PORT, (err) => {
     if(err) {
