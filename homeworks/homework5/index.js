@@ -28,6 +28,7 @@ app.delete('/food/:id', food.deleteFood);
 app.patch('/food/:id', food.partialUpdateFood);
 
 app.get("/students", templates.GetStudents);
+app.get("/hrana", templates.GetAllFood);
 
 const port = process.env.PORT || 8080;
 app.listen(port, (err) => {

@@ -31,6 +31,7 @@ api.patch('/food/:id', food.PartialUpdateFood);
 api.delete('/food/:id', food.DeleteFood);
 
 api.get('/first', templates.First);
+api.get('/second', templates.Food);
 
 
 api.listen(8080, (err) => {
@@ -40,3 +41,8 @@ api.listen(8080, (err) => {
     }
     console.log('Server started successfully');
 });
+
+
+/*  MVC MODEL VIEW CONTROLLER
+    PROMISES
+*/

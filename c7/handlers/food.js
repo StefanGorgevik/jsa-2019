@@ -1,18 +1,36 @@
 var fs = require('fs');
+var modelFood = require("../models/food");
+const foodFile = "./food_list.json"
+
 
 var GetAllFood = (req, res) => {
-    fs.readFile('./food_list.json', 'utf8', (err, data) => {
-        if(err){
-            res.send('Could not read file');
-            return;
-        }
-        jData = JSON.parse(data);
-        res.send(jData);
-    });
+    modelFood.GetAll()
+    .then(data => {
+        return res.render("food", {f:data})       
+    })
+    .catch(err => {
+        return res.send("ERROR!");
+    })
+    // fs.readFile('./food_list.json', 'utf8', (err, data) => {
+    //     if(err){
+    //         res.send('Could not read file');
+    //         return;
+    //     }
+    //     jData = JSON.parse(data);
+    //     res.send(jData);
+    // });
 };
 
 var GetSingleFood = (req, res) => {
-    fs.readFile('./food_list.json', 'utf8', (err, data) => {
+    modelFood.GetSingle(req.params.id)
+    .then(data => {
+        return res.send(data)
+    })
+    .catch(err => {
+        return res.send("Error!");
+    })
+
+/*     fs.readFile('./food_list.json', 'utf8', (err, data) => {
         if(err){
             res.send('Could not read file');
             return;
@@ -25,11 +43,24 @@ var GetSingleFood = (req, res) => {
             return res.status(404).send('Not found');
         }
         return res.send(out[0]);
-    });
+    }); */
 }
 
 var CreateNewFood = (req, res) => {
-    var check = req.body.id != undefined
+    modelFood.CreateFood()
+        .then(data => {
+            return fs.writeFile(foodFile, JSON.stringify(data), (err) => {
+                if(err){
+                    return res.status(500).send('Could not save file');
+                }
+            });
+            
+        })
+        .catch(err => {
+            return res.send("Error!")
+        });
+    }   
+   /*  var check = req.body.id != undefined
         && req.body.name != undefined && req.body.name != "" && req.body.name.length > 0
         && req.body.price != undefined
         && req.body.calories != undefined;
@@ -50,8 +81,8 @@ var CreateNewFood = (req, res) => {
                 }
                 return res.status(201).send(req.body);
             });
-        });
-}
+        }); */
+
 
 var UpdateFood = (req, res) => {
     var check = req.body.id != undefined

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="students.css"/>
 </head>
 <body>
-
+    <div>
          <table border="1">
          <thead>
         <th>ID</th>
@@ -28,20 +28,25 @@
             {{/each}} 
         </tbody>
         </table>
-    
+</div>
+<div>
+         <table border="1">
+         <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Calories</th>
+        </thead> <tbody>
+        {{#each foods}}      
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>{{price}}</td>
+                <td>{{calories}}</td>
+            </tr>
+            {{/each}} 
+        </tbody>
+        </table>
+    </div>
 </body>
 </html>
-{{!-- 
-    <table border="1">
-         <thead>
-        <th>Name</th>
-        <th>LastName</th>
-        </thead> <tbody>
-        {{#each studenti}}      
-            <tr>
-                <td>{{ime}}</td>
-                <td>{{prezime}}</td>
-            </tr>
-        </tbody>
-         {{/each}}      
-        </table> --}}
