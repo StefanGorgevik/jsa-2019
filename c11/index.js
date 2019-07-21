@@ -2,7 +2,7 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var hbs = require('express-hbs');
-var students = require("./handlers/students");
+var students = require("./handlers/handler");
 
 app.engine('hbs', hbs.express4());
 app.set('view engine', 'hbs');
